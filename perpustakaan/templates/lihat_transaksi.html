@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Lihat: {{ transaksi.id }}</h3>
+            {% for message in messages %}
+                {% if message %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+            <form action="{% url 'lihat_transaksi' transaksi.id %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }} <!-- tampikan form sebagai paragraf biar ke bawah (.as_p)-->
+                <a href="/transaksi" class="btn btn-danger">Kembali</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
